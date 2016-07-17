@@ -12,7 +12,11 @@ def test_run():
     start_date='2010-01-22'
     end_date='2010-01-26'
     dates = pnd.date_range(start_date, end_date)
-    print(dates)
+    df1 = pnd.DataFrame(index=dates)
+    
+    dfSPY =pnd.read_csv("data/SPY.csv")
+    df1 = df1.join(dfSPY)
+    print(df1)
     
 if __name__ == "__main__":
     test_run()
