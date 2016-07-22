@@ -14,7 +14,7 @@ def test_run():
     dates = pnd.date_range(start_date, end_date)
     df1 = pnd.DataFrame(index=dates)
     
-    dfSPY =pnd.read_csv("data/SPY.csv")
+    dfSPY =pnd.read_csv("data/SPY.csv", index_col="Date", parse_dates="True", usecols=['Date', 'Adj Close'], na_values=['nan'])
     df1 = df1.join(dfSPY)
     print(df1)
     
