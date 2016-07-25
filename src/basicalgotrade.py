@@ -14,8 +14,11 @@ def test_run():
     dates = pnd.date_range(start_date, end_date)
     df1 = pnd.DataFrame(index=dates)
     
-    dfSPY =pnd.read_csv("data/SPY.csv", index_col="Date", parse_dates="True", usecols=['Date', 'Adj Close'], na_values=['nan'])
-    df1 = df1.join(dfSPY)
+    symbols=['GOOG', 'IBM', 'GLD', 'SPY']
+    for symbol in symbols:
+        df_temp=read_csv("data/{}.csv".format(symbol), index_col="Date", parse_dates="True", usecols=['Date', 'Adj Close'], na_values=['nan'])
+        df_temp=df_temp.rename(columns={"Adj Close": symbol})
+        df1=df1.join(df_temp)
     print(df1)
     
 if __name__ == "__main__":
